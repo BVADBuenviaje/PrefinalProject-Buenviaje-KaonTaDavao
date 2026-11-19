@@ -4,10 +4,7 @@
 @section('content')
 <div class="max-w-3xl mx-auto">
     <div class="mb-6 flex items-center justify-between">
-        <div>
-            <h1 class="text-2xl font-bold text-slate-900">Edit Eatery</h1>
-            <p class="text-sm text-slate-500">Updating {{ $eatery->name }}</p>
-        </div>
+        <h1 class="text-2xl font-bold text-slate-900">Edit Eatery</h1>
         <a href="{{ route('eateries.show', $eatery) }}" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">
             &larr; Back to eatery
         </a>

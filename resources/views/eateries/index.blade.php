@@ -4,10 +4,7 @@
 @section('content')
 <div class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-            <h1 class="text-2xl font-bold text-slate-900">All Eateries</h1>
-            <p class="text-sm text-slate-500">Explore carinderias and food spots in Davao City</p>
-        </div>
+        <h1 class="text-2xl font-bold text-slate-900">All Eateries</h1>
         <a href="{{ route('eateries.create') }}" class="inline-flex items-center px-4 py-2 rounded-md bg-amber-600 text-white font-medium hover:bg-amber-700 transition self-start sm:self-auto">
             + Add New Eatery
         </a>

@@ -4,10 +4,7 @@
 @section('content')
 <div class="max-w-3xl mx-auto">
     <div class="mb-6 flex items-center justify-between">
-        <div>
-            <h1 class="text-2xl font-bold text-slate-900">Add New Eatery</h1>
-            <p class="text-sm text-slate-500">Register a new carinderia or eatery in Davao City</p>
-        </div>
+        <h1 class="text-2xl font-bold text-slate-900">Add New Eatery</h1>
         <a href="{{ route('eateries.index') }}" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">
             &larr; Cancel
         </a>

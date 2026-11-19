@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 // Controller
 
+use App\Http\Requests\StoreEateryRequest;
+use App\Http\Requests\UpdateEateryRequest;
 use App\Models\District;
 use App\Models\Eatery;
 use App\Models\Feature;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class EateryController extends Controller
 {
@@ -52,9 +55,28 @@ class EateryController extends Controller
         return view('eateries.create', compact('districts', 'features'));
     }
 
-    public function store(Request $request)
+    public function store(StoreEateryRequest $request)
     {
-        return redirect()->route('eateries.index');
+        $validated = $request->validated();
+
+        $eatery = Eatery::create([
+            'district_id' => $validated['district_id'],
+            'name' => $validated['name'],
+            'slug' => Str::slug($validated['name']),
+            'address' => $validated['address'],
+            'price_range' => $validated['price_range'],
+            'specialty' => $validated['specialty'] ?? null,
+            'is_open' => (bool) ($validated['is_open'] ?? false),
+        ]);
+
+        $eatery->permit()->create([
+            'permit_no' => $validated['permit_no'],
+            'expires_on' => $validated['expires_on'],
+        ]);
+
+        $eatery->features()->sync($validated['features']);
+
+        return redirect()->route('eateries.show', $eatery)->with('success', 'Eatery added.');
     }
 
     public function show(Eatery $eatery)
@@ -81,9 +103,31 @@ class EateryController extends Controller
         return view('eateries.edit', compact('eatery', 'districts', 'features'));
     }
 
-    public function update(Request $request, Eatery $eatery)
+    public function update(UpdateEateryRequest $request, Eatery $eatery)
     {
-        return redirect()->route('eateries.show', $eatery);
+        $validated = $request->validated();
+
+        $eatery->update([
+            'district_id' => $validated['district_id'],
+            'name' => $validated['name'],
+            'slug' => Str::slug($validated['name']),
+            'address' => $validated['address'],
+            'price_range' => $validated['price_range'],
+            'specialty' => $validated['specialty'] ?? null,
+            'is_open' => (bool) ($validated['is_open'] ?? false),
+        ]);
+
+        $eatery->permit()->updateOrCreate(
+            ['eatery_id' => $eatery->id],
+            [
+                'permit_no' => $validated['permit_no'],
+                'expires_on' => $validated['expires_on'],
+            ]
+        );
+
+        $eatery->features()->sync($validated['features'] ?? []);
+
+        return redirect()->route('eateries.show', $eatery)->with('success', 'Eatery updated.');
     }
 
     public function destroy(Eatery $eatery)

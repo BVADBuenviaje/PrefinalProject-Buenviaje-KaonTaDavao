@@ -17,10 +17,10 @@ class HomeController extends Controller
         $districtsCount = District::count();
         $reviewsCount = Review::count();
 
-        $topEateries = Eatery::with(['district', 'features'])
+        $topEateries = Eatery::has('reviews')
+            ->with(['district', 'features'])
             ->withAvg('reviews', 'rating')
             ->withCount('reviews')
-            ->having('reviews_count', '>=', 1)
             ->orderByDesc('reviews_avg_rating')
             ->take(3)
             ->get();

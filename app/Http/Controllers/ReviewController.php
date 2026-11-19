@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 // Controller
 
+use App\Http\Requests\StoreReviewRequest;
 use App\Models\Eatery;
 use App\Models\Review;
-use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    public function store(Request $request, Eatery $eatery)
+    public function store(StoreReviewRequest $request, Eatery $eatery)
     {
-        // Handled via StoreReviewRequest in Milestone 6
+        $validated = $request->validated();
+
+        $eatery->reviews()->create($validated);
+
         return redirect()->route('eateries.show', $eatery)->with('success', 'Salamat! Review posted.');
     }
 

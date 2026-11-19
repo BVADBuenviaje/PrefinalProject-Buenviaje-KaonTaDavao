@@ -1,14 +1,30 @@
 # Kaon Ta! Davao Buenviaje's Food Guide
 
 **Developer:** Brian Buenviaje  
-**Course & Section:** CS Elective 2 Full-Stack Development (Laravel) · 4-334  
-**Project:** Prefinal Milestone Project – Kaon Ta! Davao: Carinderia & Eatery Guide  
+**Course & Section:** CS Elective 2 Full-Stack Development (Laravel) - 4-334  
+**Project:** Prefinal Milestone Project - Kaon Ta! Davao: Carinderia & Eatery Guide  
 
 ---
 
-## 1. Setup Instructions
+## Overview
 
-To run this application locally, execute the following commands from the project root:
+**Kaon Ta! Davao** is a Davao City local eatery directory that allows residents and tourists to discover and explore carinderias and local eateries categorized by districts, verify municipal business permits, browse specialty menu dishes, filter by amenities/features (e.g., Suki ni Buenviaje, Halal, Budget Meal, Aircon), and read authentic community dining reviews.
+
+---
+
+## Tech Stack
+
+- **Framework:** Laravel 12
+- **Backend Language:** PHP
+- **Database:** SQLite
+- **Styling:** Tailwind CSS (via Vite)
+- **Templating:** Blade
+
+---
+
+## Setup & Installation Instructions
+
+Follow these commands from the project root directory to set up and run the application locally:
 
 ```sh
 composer install
@@ -16,8 +32,7 @@ cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
 php artisan migrate:fresh --seed
-npm install
-npm run build # or npm run dev while developing
+npm install && npm run build
 php artisan serve
 ```
 
@@ -25,14 +40,14 @@ The application will be accessible at `http://127.0.0.1:8000`.
 
 ---
 
-## 2. Personalized Data
+## Personalized Data
 
 - **Site Title:** `Kaon Ta! Davao Buenviaje's Food Guide`
 - **Districts (6):** `Poblacion`, `Talomo`, `Agdao`, `Buhangin`, `Toril`, `Calinan`
 - **Features (6):** `Suki ni Buenviaje`, `Budget Meal`, `Halal`, `Open 24 Hours`, `Aircon`, `Free Sabaw`
 - **Seeded Users (12):**
-  - `Brian Buenviaje` (`buenviaje@kaonta.test`, password `kaonta2026`)
-  - `Tita Buenviaje` (`tita.buenviaje@kaonta.test`, password `kaonta2026`)
+  - `Brian Buenviaje` (`buenviaje@kaonta.test`, password `kaonta2026` hashed)
+  - `Tita Buenviaje` (`tita.buenviaje@kaonta.test`, password `kaonta2026` hashed)
   - 10 additional factory-generated users
 - **Hand-made Eatery:**
   - **Name:** `Carinderia ni Buenviaje`
@@ -53,7 +68,7 @@ The application will be accessible at `http://127.0.0.1:8000`.
 
 ---
 
-## 3. Eloquent Relationships
+## Eloquent Relationships
 
 | Relationship | Type | Explanation |
 | :--- | :--- | :--- |
@@ -67,7 +82,7 @@ The application will be accessible at `http://127.0.0.1:8000`.
 
 ---
 
-## 4. Application Routes
+## Application Routes
 
 Output of `php artisan route:list --except-vendor`:
 
@@ -89,13 +104,13 @@ DELETE reviews/{review} ........................................ reviews.destroy
 
 ---
 
-## 5. Application Screenshots
+## Application Screenshots
 
 ### Eatery List Page (`/eateries`)
 ![Eatery List](screenshots/eatery-list.png)
 
-### Eatery Show Page (`/eateries/carinderia-ni-buenviaje`)
-![Eatery Show](screenshots/eatery-show.png)
+### Eatery Detail Page (`/eateries/carinderia-ni-buenviaje`)
+![Eatery Detail](screenshots/eatery-show.png)
 
 ### Form Validation Errors (`/eateries/create`)
-![Create Form Validation Errors](screenshots/create-errors.png)
+![Create Validation Errors](screenshots/create-errors.png)

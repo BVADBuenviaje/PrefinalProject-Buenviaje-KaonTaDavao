@@ -41,7 +41,7 @@
         </div>
 
         <div class="flex items-end gap-2">
-            <button type="submit" class="flex-1 px-4 py-2 rounded-md bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition">
+            <button type="submit" class="flex-1 px-4 py-2 rounded-md bg-amber-600 text-white font-medium text-sm hover:bg-amber-700 transition">
                 Filter
             </button>
             @if (request()->hasAny(['q', 'district', 'feature']))
